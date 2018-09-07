@@ -304,9 +304,9 @@ A guard property is useful for ensuring that a resource is idempotent by allowin
 
 .. end_tag
 
-**Attributes**
+**Properties**
 
-.. tag resources_common_guards_attributes
+.. tag resources_common_guards_properties
 
 The following properties can be used to define a guard that is evaluated during the execution phase of the chef-client run:
 
@@ -371,7 +371,7 @@ Any resource that passes a string command may also specify the interpreter that 
 
 .. end_tag
 
-**Attributes**
+**Properties**
 
 .. tag resources_common_guard_interpreter_attributes
 
@@ -405,7 +405,7 @@ The ``guard_interpreter`` property may be set to any of the following values:
 
 **Inheritance**
 
-.. tag resources_common_guard_interpreter_attributes_inherit
+.. tag resources_common_guard_interpreter_properties_inherit
 
 The ``guard_interpreter`` property is set to ``:default`` by default for the **bash**, **csh**, **perl**, **python**, and **ruby** resources. When the ``guard_interpreter`` property is set to ``:default``, ``not_if`` or ``only_if`` guard statements **do not inherit** properties that are defined by the **script**-based resource.
 

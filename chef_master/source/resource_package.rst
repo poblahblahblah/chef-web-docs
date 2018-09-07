@@ -648,9 +648,9 @@ To install a package with a ``response_file``:
 
 **Use the ignore_failure common attribute**
 
-.. tag resource_package_use_ignore_failure_attribute
+.. tag resource_package_use_ignore_failure_property
 
-.. To use the ``ignore_failure`` common attribute in a recipe:
+.. To use the ``ignore_failure`` common property in a recipe:
 
 .. code-block:: ruby
 

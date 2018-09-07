@@ -461,7 +461,7 @@ or:
     rights :full_control, 'Users', :applies_to_children => true
     rights :write, 'Sally', :applies_to_children => :containers_only, :applies_to_self => false, :one_level_deep => true
 
-Some other important things to know when using the ``rights`` attribute:
+Some other important things to know when using the ``rights`` property:
 
 * Only inherited rights remain. All existing explicit rights on the object are removed and replaced.
 * If rights are not specified, nothing will be changed. The chef-client does not clear out the rights on a file or directory if rights are not specified.

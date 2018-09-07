@@ -366,9 +366,9 @@ The following examples demonstrate various approaches for using resources in rec
 
 **Use the ignore_failure common attribute**
 
-.. tag resource_package_use_ignore_failure_attribute
+.. tag resource_package_use_ignore_failure_property
 
-.. To use the ``ignore_failure`` common attribute in a recipe:
+.. To use the ``ignore_failure`` common property in a recipe:
 
 .. code-block:: ruby
 

@@ -25,9 +25,9 @@ The examples in this section show functionality that is common across all resour
 
 **Use the ignore_failure common attribute**
 
-.. tag resource_package_use_ignore_failure_attribute
+.. tag resource_package_use_ignore_failure_property
 
-.. To use the ``ignore_failure`` common attribute in a recipe:
+.. To use the ``ignore_failure`` common property in a recipe:
 
 .. code-block:: ruby
 
@@ -40,9 +40,9 @@ The examples in this section show functionality that is common across all resour
 
 **Use the retries common attribute**
 
-.. tag resource_service_use_supports_attribute
+.. tag resource_service_use_supports_property
 
-.. To use the ``retries`` common attribute in a recipe:
+.. To use the ``retries`` common property in a recipe:
 
 .. code-block:: ruby
 
@@ -353,7 +353,7 @@ where the sequencing will be in the same order as the resources are listed in th
 
 .. tag resource_template_notifies_send_notifications_to_multiple_resources
 
-To send notifications to multiple resources, just use multiple attributes. Multiple attributes will get sent to the notified resources in the order specified.
+To send notifications to multiple resources, just use multiple properties. Multiple properties will get sent to the notified resources in the order specified.
 
 .. code-block:: ruby
 
@@ -2766,9 +2766,9 @@ Use the **gem_package** resource to manage gem packages that are only included i
 
 **Use the ignore_failure common attribute**
 
-.. tag resource_package_use_ignore_failure_attribute
+.. tag resource_package_use_ignore_failure_property
 
-.. To use the ``ignore_failure`` common attribute in a recipe:
+.. To use the ``ignore_failure`` common property in a recipe:
 
 .. code-block:: ruby
 
@@ -3965,9 +3965,9 @@ To install a package with a ``response_file``:
 
 **Use the ignore_failure common attribute**
 
-.. tag resource_package_use_ignore_failure_attribute
+.. tag resource_package_use_ignore_failure_property
 
-.. To use the ``ignore_failure`` common attribute in a recipe:
+.. To use the ``ignore_failure`` common property in a recipe:
 
 .. code-block:: ruby
 
@@ -3982,7 +3982,7 @@ To install a package with a ``response_file``:
 
 .. tag resource_package_use_provider_attribute
 
-.. To use the ``:provider`` common attribute in a recipe:
+.. To use the ``:provider`` common property in a recipe:
 
 .. code-block:: ruby
 
@@ -5600,9 +5600,9 @@ Use the **service** resource to manage a service.
 
 **Use the retries common attribute**
 
-.. tag resource_service_use_supports_attribute
+.. tag resource_service_use_supports_property
 
-.. To use the ``retries`` common attribute in a recipe:
+.. To use the ``retries`` common property in a recipe:
 
 .. code-block:: ruby
 
@@ -6292,7 +6292,7 @@ and then the chef-client would immediately run the following:
 
 .. tag resource_template_notifies_send_notifications_to_multiple_resources
 
-To send notifications to multiple resources, just use multiple attributes. Multiple attributes will get sent to the notified resources in the order specified.
+To send notifications to multiple resources, just use multiple properties. Multiple properties will get sent to the notified resources in the order specified.
 
 .. code-block:: ruby
 

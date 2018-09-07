@@ -45,7 +45,7 @@ The following examples show how to use common actions in a recipe.
 
 Properties
 =====================================================
-.. tag resources_common_attributes
+.. tag resources_common_properties
 
 The following properties are common to every resource:
 
@@ -78,9 +78,9 @@ The following examples show how to use common properties in a recipe.
 
 **Use the ignore_failure common property**
 
-.. tag resource_package_use_ignore_failure_attribute
+.. tag resource_package_use_ignore_failure_property
 
-.. To use the ``ignore_failure`` common attribute in a recipe:
+.. To use the ``ignore_failure`` common property in a recipe:
 
 .. code-block:: ruby
 
@@ -93,9 +93,9 @@ The following examples show how to use common properties in a recipe.
 
 **Use the retries common property**
 
-.. tag resource_service_use_supports_attribute
+.. tag resource_service_use_supports_property
 
-.. To use the ``retries`` common attribute in a recipe:
+.. To use the ``retries`` common property in a recipe:
 
 .. code-block:: ruby
 
@@ -121,7 +121,7 @@ A guard property is useful for ensuring that a resource is idempotent by allowin
 
 Attributes
 -----------------------------------------------------
-.. tag resources_common_guards_attributes
+.. tag resources_common_guards_properties
 
 The following properties can be used to define a guard that is evaluated during the execution phase of the chef-client run:
 
@@ -342,7 +342,7 @@ The ``guard_interpreter`` property may be set to any of the following values:
 
 Inheritance
 -----------------------------------------------------
-.. tag resources_common_guard_interpreter_attributes_inherit
+.. tag resources_common_guard_interpreter_properties_inherit
 
 The ``guard_interpreter`` property is set to ``:default`` by default for the **bash**, **csh**, **perl**, **python**, and **ruby** resources. When the ``guard_interpreter`` property is set to ``:default``, ``not_if`` or ``only_if`` guard statements **do not inherit** properties that are defined by the **script**-based resource.
 
@@ -414,7 +414,7 @@ In some cases, the value for a property cannot be known until the execution phas
 
 .. code-block:: ruby
 
-   attribute_name lazy { code_block }
+   property_name lazy { code_block }
 
 where ``lazy`` is used to tell the chef-client to evaluate the contents of the code block later on in the resource evaluation process (instead of immediately) and ``{ code_block }`` is arbitrary Ruby code that provides the value.
 
@@ -423,7 +423,7 @@ For example, a resource that is **not** doing lazy evaluation:
 .. code-block:: ruby
 
    template 'template_name' do
-     # some attributes
+     # some properties
      path '/foo/bar'
    end
 
@@ -432,7 +432,7 @@ and a resource block that is doing lazy evaluation:
 .. code-block:: ruby
 
    template 'template_name' do
-     # some attributes
+     # some properties
      path lazy { ' some Ruby code ' }
    end
 
@@ -625,7 +625,7 @@ where the sequencing will be in the same order as the resources are listed in th
 
 .. tag resource_template_notifies_send_notifications_to_multiple_resources
 
-To send notifications to multiple resources, just use multiple attributes. Multiple attributes will get sent to the notified resources in the order specified.
+To send notifications to multiple resources, just use multiple properties. Multiple properties will get sent to the notified resources in the order specified.
 
 .. code-block:: ruby
 
@@ -1021,7 +1021,7 @@ or:
     rights :full_control, 'Users', :applies_to_children => true
     rights :write, 'Sally', :applies_to_children => :containers_only, :applies_to_self => false, :one_level_deep => true
 
-Some other important things to know when using the ``rights`` attribute:
+Some other important things to know when using the ``rights`` property:
 
 * Only inherited rights remain. All existing explicit rights on the object are removed and replaced.
 * If rights are not specified, nothing will be changed. The chef-client does not clear out the rights on a file or directory if rights are not specified.

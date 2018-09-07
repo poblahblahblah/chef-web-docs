@@ -303,9 +303,9 @@ The following examples demonstrate various approaches for using resources in rec
 
 **Use the retries common attribute**
 
-.. tag resource_service_use_supports_attribute
+.. tag resource_service_use_supports_property
 
-.. To use the ``retries`` common attribute in a recipe:
+.. To use the ``retries`` common property in a recipe:
 
 .. code-block:: ruby
 
