@@ -175,14 +175,12 @@ Encryption Versions
 -----------------------------------------------------
 .. tag data_bag_encryption_versions
 
-The manner by which a data bag item is encrypted depends on the version of the chef-client. See the following:
+The manner by which a data bag item is encrypted depends on the version of the chef-client.
 
-.. image:: ../../images/essentials_data_bags_versions.png
+Version 1
++++++++++
 
-where R is read, W is write, and D is disable. (Disabling support for older encryption version formats will be in the next version and, if desired, will require a configuration change.)
-
-For version 0 (default, through chef-client version 10.18):
-
+* Default for chef-client clients before 10.18
 * An encrypted data bag item is written using YAML as the serialization format
 * Base64 encoding is used to preserve special characters in encrypted contents
 * Data is encrypted using AES-256-CBC (as defined by the OpenSSL package in the Ruby Standard Library)
@@ -190,8 +188,10 @@ For version 0 (default, through chef-client version 10.18):
 * A recipe can load encrypted data as long as the shared secret is present in a file on the node or is accessible from a URI path
 * Only the values of a data bag item are decrypted; keys are still searchable. The values associated with the ``id`` key of a data bag item are not encrypted (because they are needed when tracking the data bag item)
 
-For version 1 (default, starting with chef-client version 11.0):
+Version 2
++++++++++
 
+* Default for chef-client 11 and 12
 * An encrypted data bag item is written using JSON as the serialization format
 * Base64 encoding is used to preserve special characters in encrypted contents
 * Data is encrypted using AES-256-CBC (as defined by the OpenSSL package in the Ruby Standard Library)
@@ -200,8 +200,11 @@ For version 1 (default, starting with chef-client version 11.0):
 * A recipe can load encrypted data as long as the shared secret is present in a file on the node or is accessible from a URI path
 * Only the values of a data bag item are decrypted; keys are still searchable. The values associated with the ``id`` key of a data bag item are not encrypted (because they are needed by the chef-client when tracking the data bag item)
 
-For version 2 (available, starting with chef-client version 11.6):
 
+Version 3
++++++++++
+
+* Default for chef-client 13 and later
 * Same as version 1
 * Can disable version 0 and version 1 data bag item encryption formats
 * Adds Encrypt-then-MAC(EtM) protection
