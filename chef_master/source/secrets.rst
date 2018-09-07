@@ -9,7 +9,7 @@ Data Bags
 =====================================================
 .. tag data_bag
 
-Data bags store global variables as JSON data. Data bags are indexed for searching and can be loaded by a cookbook or accessed during a search.
+Data bags store global variables as JSON data. Data bags are indexed for searching and can be loaded by a cookbook or accessed using search.
 
 .. end_tag
 
@@ -392,7 +392,7 @@ with Search
 
 .. tag data_bag
 
-Data bags store global variables as JSON data. Data bags are indexed for searching and can be loaded by a cookbook or accessed during a search.
+Data bags store global variables as JSON data. Data bags are indexed for searching and can be loaded by a cookbook or accessed using search.
 
 .. end_tag
 
@@ -668,4 +668,3 @@ chef-solo can load data from a data bag as long as the contents of that data bag
 .. note:: Use the ``chef-solo-search`` cookbook library (developed by Chef community member "edelight" and available from GitHub) to add data bag search capabilities to a chef-solo environment: https://github.com/edelight/chef-solo-search.
 
 .. end_tag
-

@@ -207,7 +207,7 @@ data_bag
 -----------------------------------------------------
 .. tag data_bag
 
-Data bags store global variables as JSON data. Data bags are indexed for searching and can be loaded by a cookbook or accessed during a search.
+Data bags store global variables as JSON data. Data bags are indexed for searching and can be loaded by a cookbook or accessed using search.
 
 .. end_tag
 
@@ -249,7 +249,7 @@ data_bag_item
 -----------------------------------------------------
 .. tag data_bag
 
-Data bags store global variables as JSON data. Data bags are indexed for searching and can be loaded by a cookbook or accessed during a search.
+Data bags store global variables as JSON data. Data bags are indexed for searching and can be loaded by a cookbook or accessed using search.
 
 .. end_tag
 
