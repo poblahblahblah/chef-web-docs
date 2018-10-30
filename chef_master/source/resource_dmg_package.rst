@@ -9,36 +9,34 @@ Use the **dmg_package** resource to install a package from a ``.dmg`` file. The 
 
 Syntax
 =====================================================
-This resource has the following syntax:
+The dmg_package resource has the following syntax:
 
 .. code-block:: ruby
 
-   dmg_package 'name' do
-     accept_eula                true, false # default value: 'false'
-     allow_untrusted            true, false # default value: 'false'
-     app                        String # default value: 'name'
-     checksum                   String
-     destination                String # default value: '/Applications'
-     dmg_name                   String
-     dmg_passphrase             String
-     file                       String
-     headers                    Hash, nil # default value: 'nil'
-     notifies                   # see description
-     owner                      String
-     package_id                 String
-     source                     String
-     subscribes                 # see description
-     type                       String # default value: 'app'
-     volumes_dir                String
-     action                     Symbol # defaults to :install if not specified
-   end
+  dmg_package 'name' do
+    accept_eula          true, false # default value: false
+    allow_untrusted      true, false # default value: false
+    app                  String # default value: 'name' unless specified
+    checksum             String
+    destination          String # default value: /Applications
+    dmg_name             String
+    dmg_passphrase       String
+    file                 String
+    headers              Hash
+    owner                String
+    package_id           String
+    source               String
+    type                 String # default value: app
+    volumes_dir          String
+    action               Symbol # defaults to :install if not specified
+  end
 
 where:
 
 * ``dmg_package`` is the resource.
 * ``name`` is the name given to the resource block.
 * ``action`` identifies which steps the chef-client will take to bring the node into the desired state.
-* ``accept_eula``, ``allow_untrusted``, ``app``, ``checksum``, ``destination``, ``dmg_name``, ``dmg_passphrase``, ``file``, ``headers``, ``notifies``, ``owner``, ``package_id``, ``source``, ``subscribes``, ``type``, and ``volumes_dir``  are the properties available to this resource
+* ``accept_eula``, ``allow_untrusted``, ``app``, ``checksum``, ``destination``, ``dmg_name``, ``dmg_passphrase``, ``file``, ``headers``, ``owner``, ``package_id``, ``source``, ``type``, and ``volumes_dir`` are the properties available to this resource.
 
 Actions
 =====================================================
@@ -46,15 +44,15 @@ Actions
 The dmg_package resource has the following actions:
 
 ``:install``
-   Default. Installs the application. 
-   
+   Default. Installs the application.
+
 ``:nothing``
    .. tag resources_common_actions_nothing
 
    Define this resource block to do nothing until notified by another resource to take action. When this resource is notified, this resource block is either run immediately or it is queued up to be run at the end of the Chef Client run.
 
    .. end_tag
-   
+
 Properties
 =====================================================
 
@@ -62,50 +60,111 @@ The dmg_package resource has the following properties:
 
 ``accept_eula``
    **Ruby Type:** true, false | **Default Value:** ``false``
-   
-   Specify if the application's EULA should be accepted, if applicable.
+
+   Specify whether to accept the EULA. Certain dmgs require acceptance of EULA before mounting.
 
 ``allow_untrusted``
    **Ruby Type:** true, false | **Default Value:** ``false``
-   
+
    Allow installation of packages that do not have trusted certificates.
 
 ``app``
    **Ruby Type:** String | **Default Value:** ``'name'``
 
-   The name of the application as it appears in the ``/Volumes`` directory, if it differs from the resource block name. 
+   The name of the application as it appears in the ``/Volumes`` directory, if it differs from the resource block name.
 
 ``checksum``
    **Ruby Type:** String
-   
+
    The sha256 checksum of the ``.dmg`` file to download.
 
 ``destination``
    **Ruby Type:** String | **Default Value:** ``/Applications``
-   
+
    The directory to copy the ``.app`` into.
 
 ``dmg_name``
    **Ruby Type:** String
-   
+
    The name of the ``.dmg`` file if it differs from that of the app, or if the name has spaces.
 
 ``dmg_passphrase``
    **Ruby Type:** String
-   
+
    Specify a passphrase to be used to decrypt the ``.dmg`` file during the mount process.
 
 ``file``
    **Ruby Type:** String
-   
+
    The full path to the ``.dmg`` file on the local system.
 
 ``headers``
    **Ruby Type:** Hash, nil | **Default Value:** ``nil``
-   
+
    Allows custom HTTP headers (like cookies) to be set on the ``remote_file`` resource.
+
+``owner``
+   **Ruby Type:** String
+
+   The system user that should own the package installation.
+
+``package_id``
+   **Ruby Type:** String
+
+   The package ID that is registered with ``pkgutil`` when a ``pkg`` or ``mpkg`` is installed.
+
+``source``
+   **Ruby Type:** String
+
+   The remote URL that is used to download the ``.dmg`` file, if specified.
+
+``type``
+   **Ruby Type:** String | **Default Value:** ``app``
+
+   The type of package.
+
+``volumes_dir``
+   **Ruby Type:** String
+
+   The directory under ``/Volumes`` where the dmg is mounted, if it differs from the name of the ``.dmg`` file.
    
-``notifies``
+ Common Resource Functionality
+ =====================================================
+
+ Chef resources include common properties, notifications, and resource guards.
+
+ Common Properties
+ -----------------------------------------------------
+
+ .. tag resources_common_properties
+
+ The following properties are common to every resource:
+
+ ``ignore_failure``
+  **Ruby Type:** true, false | **Default Value:** ``false``
+
+  Continue running a recipe if a resource fails for any reason.
+
+ ``retries``
+  **Ruby Type:** Integer | **Default Value:** ``0``
+
+  The number of times to catch exceptions and retry the resource.
+
+ ``retry_delay``
+  **Ruby Type:** Integer | **Default Value:** ``2``
+
+  The retry delay (in seconds).
+
+ ``sensitive``
+  **Ruby Type:** true, false | **Default Value:** ``false``
+
+  Ensure that sensitive resource data is not logged by the chef-client.
+
+ .. end_tag
+
+ Notifications
+ -----------------------------------------------------
+ ``notifies``
    **Ruby Type:** Symbol, 'Chef::Resource[String]'
 
    .. tag resources_common_notification_notifies
@@ -139,22 +198,7 @@ The dmg_package resource has the following properties:
 
    .. end_tag
 
-``owner``
-   **Ruby Type:** String
-   
-   The system user that should own the package installation.
-
-``package_id``
-   **Ruby Type:** String
-   
-   The package ID that is registered with ``pkgutil`` when a ``pkg`` or ``mpkg`` is installed.
-
-``source``
-   **Ruby Type:** String
-   
-   The remote URL that is used to download the ``.dmg`` file, if specified.
-   
-``subscribes``
+ ``subscribes``
    **Ruby Type:** Symbol, 'Chef::Resource[String]'
 
    .. tag resources_common_notification_subscribes
@@ -203,12 +247,27 @@ The dmg_package resource has the following properties:
 
    .. end_tag
 
-``type``
-   **Ruby Type:** String | **Default Value:** ``app``
-   
-   The type of package.
+ Guards
+ -----------------------------------------------------
 
-``volumes_dir``
-   **Ruby Type:** String
-   
-   The directory under ``/Volumes`` where the dmg is mounted, if it differs from the name of the ``.dmg`` file.
+ .. tag resources_common_guards
+
+ A guard property can be used to evaluate the state of a node during the execution phase of the chef-client run. Based on the results of this evaluation, a guard property is then used to tell the chef-client if it should continue executing a resource. A guard property accepts either a string value or a Ruby block value:
+
+ * A string is executed as a shell command. If the command returns ``0``, the guard is applied. If the command returns any other value, then the guard property is not applied. String guards in a **powershell_script** run Windows PowerShell commands and may return ``true`` in addition to ``0``.
+ * A block is executed as Ruby code that must return either ``true`` or ``false``. If the block returns ``true``, the guard property is applied. If the block returns ``false``, the guard property is not applied.
+
+ A guard property is useful for ensuring that a resource is idempotent by allowing that resource to test for the desired state as it is being executed, and then if the desired state is present, for the chef-client to do nothing.
+
+ .. end_tag
+ .. tag resources_common_guards_properties
+
+ The following properties can be used to define a guard that is evaluated during the execution phase of the chef-client run:
+
+ ``not_if``
+  Prevent a resource from executing when the condition returns ``true``.
+
+ ``only_if``
+  Allow a resource to execute only if the condition returns ``true``.
+
+ .. end_tag
